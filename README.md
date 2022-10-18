@@ -1,0 +1,1 @@
+#Lukas, run the program and see what it looks like and then where I am stuck is getting the addBarItem file to set the data in the bar book view, and then I need the bar item view to be editable and want the data to be editable across multiple lines
