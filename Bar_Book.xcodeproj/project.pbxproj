@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005C31D328FDC624006D9F58 /* AddBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C31D228FDC624006D9F58 /* AddBarItemView.swift */; };
+		005C31D528FDC68B006D9F58 /* BarItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C31D428FDC68B006D9F58 /* BarItemsView.swift */; };
+		005C31D728FDCB72006D9F58 /* BarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C31D628FDCB72006D9F58 /* BarItem.swift */; };
+		005C31D928FDCDF9006D9F58 /* SaveBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C31D828FDCDF9006D9F58 /* SaveBarItem.swift */; };
+		005C31DB28FDD535006D9F58 /* BarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C31DA28FDD535006D9F58 /* BarItemCell.swift */; };
 		009C784728F74D1600807132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C784628F74D1600807132 /* AppDelegate.swift */; };
 		009C784928F74D1600807132 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C784828F74D1600807132 /* SceneDelegate.swift */; };
-		009C784B28F74D1600807132 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C784A28F74D1600807132 /* ViewController.swift */; };
+		009C784B28F74D1600807132 /* BarBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C784A28F74D1600807132 /* BarBookView.swift */; };
 		009C784E28F74D1600807132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009C784C28F74D1600807132 /* Main.storyboard */; };
 		009C785028F74D1800807132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 009C784F28F74D1800807132 /* Assets.xcassets */; };
 		009C785328F74D1800807132 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009C785128F74D1800807132 /* LaunchScreen.storyboard */; };
@@ -35,10 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		005C31D228FDC624006D9F58 /* AddBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBarItemView.swift; sourceTree = "<group>"; };
+		005C31D428FDC68B006D9F58 /* BarItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarItemsView.swift; sourceTree = "<group>"; };
+		005C31D628FDCB72006D9F58 /* BarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarItem.swift; sourceTree = "<group>"; };
+		005C31D828FDCDF9006D9F58 /* SaveBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBarItem.swift; sourceTree = "<group>"; };
+		005C31DA28FDD535006D9F58 /* BarItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarItemCell.swift; sourceTree = "<group>"; };
 		009C784328F74D1600807132 /* Bar_Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bar_Book.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009C784628F74D1600807132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		009C784828F74D1600807132 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		009C784A28F74D1600807132 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		009C784A28F74D1600807132 /* BarBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarBookView.swift; sourceTree = "<group>"; };
 		009C784D28F74D1600807132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		009C784F28F74D1800807132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		009C785228F74D1800807132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +111,12 @@
 			children = (
 				009C784628F74D1600807132 /* AppDelegate.swift */,
 				009C784828F74D1600807132 /* SceneDelegate.swift */,
-				009C784A28F74D1600807132 /* ViewController.swift */,
+				005C31D628FDCB72006D9F58 /* BarItem.swift */,
+				005C31D828FDCDF9006D9F58 /* SaveBarItem.swift */,
+				005C31DA28FDD535006D9F58 /* BarItemCell.swift */,
+				005C31D228FDC624006D9F58 /* AddBarItemView.swift */,
+				005C31D428FDC68B006D9F58 /* BarItemsView.swift */,
+				009C784A28F74D1600807132 /* BarBookView.swift */,
 				009C784C28F74D1600807132 /* Main.storyboard */,
 				009C784F28F74D1800807132 /* Assets.xcassets */,
 				009C785128F74D1800807132 /* LaunchScreen.storyboard */,
@@ -258,8 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C784B28F74D1600807132 /* ViewController.swift in Sources */,
+				005C31DB28FDD535006D9F58 /* BarItemCell.swift in Sources */,
+				005C31D328FDC624006D9F58 /* AddBarItemView.swift in Sources */,
+				005C31D528FDC68B006D9F58 /* BarItemsView.swift in Sources */,
+				005C31D928FDCDF9006D9F58 /* SaveBarItem.swift in Sources */,
+				009C784B28F74D1600807132 /* BarBookView.swift in Sources */,
 				009C784728F74D1600807132 /* AppDelegate.swift in Sources */,
+				005C31D728FDCB72006D9F58 /* BarItem.swift in Sources */,
 				009C784928F74D1600807132 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
