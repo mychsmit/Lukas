@@ -73,7 +73,7 @@
                     <navigationItem key="navigationItem" title="Bar Book" id="9qt-mZ-DqO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qT3-FK-SXy">
                             <connections>
-                                <segue destination="Izt-Ri-4gJ" kind="show" identifier="addBarItem" id="HoF-ac-wLF"/>
+                                <segue destination="Izt-Ri-4gJ" kind="show" identifier="addBarItem" id="LUf-m1-nb5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -100,6 +100,9 @@
                                 <rect key="frame" x="132" y="315" width="150" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadImageButton:" destination="Izt-Ri-4gJ" eventType="touchUpInside" id="XEZ-No-FNz"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-cQ-JCW">
                                 <rect key="frame" x="15" y="381" width="384" height="34"/>
@@ -175,12 +178,17 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="x1V-u3-gFo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sPn-un-2Zq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add New Item" id="sPn-un-2Zq">
+                            <connections>
+                                <action selector="saveButon:" destination="Izt-Ri-4gJ" id="RWD-PA-MbO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="directionsField" destination="3qP-o5-tT7" id="6mk-WR-9wm"/>
                         <outlet property="drinkTitleField" destination="PP7-ZX-IDg" id="U2E-Ym-K7D"/>
                         <outlet property="ingredientsField" destination="wFY-As-qJX" id="5RH-aI-fYx"/>
+                        <outlet property="uploadImageView" destination="Scq-vV-xlc" id="r05-Gt-rg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgZ-39-TXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -206,41 +214,69 @@
                                     <constraint firstAttribute="height" constant="193" id="Qkm-Ds-pde"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3jB-QF-8En">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3jB-QF-8En">
                                 <rect key="frame" x="20" y="365" width="374" height="447"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLi-i0-X9p">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="77.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11T-jR-fNN">
-                                        <rect key="frame" x="0.0" y="92.5" width="374" height="77.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ingredientsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98c-Px-3pk">
-                                        <rect key="frame" x="0.0" y="185" width="374" height="77"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Directions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-bM-m0W">
-                                        <rect key="frame" x="0.0" y="277" width="374" height="77.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="directionsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOi-M0-1ok">
-                                        <rect key="frame" x="0.0" y="369.5" width="374" height="77.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="244" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pfy-tn-SeB">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="115"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLi-i0-X9p">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="115"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMk-PB-ah0">
+                                                <rect key="frame" x="62" y="0.0" width="312" height="115"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" verticalHuggingPriority="249" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0Pv-dN-1Oh">
+                                        <rect key="frame" x="0.0" y="130" width="374" height="115.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11T-jR-fNN">
+                                                <rect key="frame" x="0.0" y="0.0" width="126" height="115.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NE5-Eo-Kfv">
+                                                <rect key="frame" x="128" y="0.0" width="246" height="115.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="9V6-Gj-Owy">
+                                        <rect key="frame" x="0.0" y="260.5" width="374" height="186.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Directions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-bM-m0W">
+                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="186.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cTw-rp-Zlf">
+                                                <rect key="frame" x="127.5" y="0.0" width="246.5" height="186.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-M4-1RL">
+                                <rect key="frame" x="150" y="314" width="114" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Edit Image"/>
+                                <connections>
+                                    <action selector="uploadImageButton:" destination="9SH-lg-m1R" eventType="touchUpInside" id="5Lz-wt-Tpy"/>
+                                    <action selector="uploadImageButton:" destination="Izt-Ri-4gJ" eventType="touchUpInside" id="R5V-tr-Yvr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vjq-MG-F2n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -263,9 +299,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="ITE-Oz-VL3"/>
                     <connections>
-                        <outlet property="directionsLabel" destination="uOi-M0-1ok" id="s6I-dd-Xvm"/>
-                        <outlet property="drinkTitleLabel" destination="LLi-i0-X9p" id="ybE-bz-I23"/>
-                        <outlet property="ingredientsLabel" destination="98c-Px-3pk" id="fnh-Xz-9qq"/>
+                        <outlet property="directionsLabel" destination="cTw-rp-Zlf" id="oGu-RV-cj3"/>
+                        <outlet property="drinkTitleLabel" destination="cMk-PB-ah0" id="7BV-Uo-QJ2"/>
+                        <outlet property="ingredientsLabel" destination="NE5-Eo-Kfv" id="u4P-AF-eUC"/>
+                        <outlet property="uploadImageView" destination="gbK-FQ-sjL" id="Nfx-me-h71"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R5-zj-Y1s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

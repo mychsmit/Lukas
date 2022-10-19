@@ -9,6 +9,8 @@ import UIKit
 
 class SaveBarItem {
     
+    var addBarItem = AddBarItemView();
+    
     var allBarItems = [BarItem]();
     
     let itemArchiveURL: URL = {
@@ -23,11 +25,14 @@ class SaveBarItem {
     
     @discardableResult func createItem() -> BarItem {
         
-        let newBarItem = BarItem(random: true);
+        let newBarItem = BarItem(drinkTitle: addBarItem.drinkTitleField.text!, ingredients: addBarItem.ingredientsField.text!, directions: addBarItem.directionsField.text!, drinkImage: addBarItem.uploadImageView.image!);
         
+        print(newBarItem);
+
         allBarItems.append(newBarItem);
-        
+
         return newBarItem;
+        
         
     }
     

@@ -12,19 +12,6 @@ class BarBookView: UITableViewController {
     var SaveBarItem: SaveBarItem!
     
     
-    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
-        
-        let newItem = SaveBarItem.createItem();
-        
-        if let index = SaveBarItem.allBarItems.firstIndex(of: newItem) {
-            
-            let indexPath = IndexPath(row: index, section: 0);
-            
-            tableView.insertRows(at: [indexPath], with: .automatic)
-            
-        }
-        
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -95,8 +82,16 @@ class BarBookView: UITableViewController {
             }
             
         case "addBarItem":
+            
+            if let row = tableView.indexPathForSelectedRow?.row {
                 
-                segue.destination as! AddBarItemView;
+                let item = SaveBarItem.allBarItems[row];
+                
+                let BarItemsView = segue.destination as! AddBarItemView;
+                
+                BarItemsView.BarItem = item;
+                
+            }
                 
         
         default: preconditionFailure("Unexpected segue identifier.")

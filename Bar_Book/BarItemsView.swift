@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarItemsView: UIViewController {
+class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var BarItem: BarItem! {
         
@@ -26,13 +26,44 @@ class BarItemsView: UIViewController {
     //any other ingredients
     
 
-    @IBOutlet var drinkTitleLabel: UILabel!
+    @IBOutlet var drinkTitleLabel: UITextField!
     
-    @IBOutlet var ingredientsLabel: UILabel!
+    @IBOutlet var ingredientsLabel: UITextField!
     
-    @IBOutlet var directionsLabel: UILabel!
+    @IBOutlet var directionsLabel: UITextField!
+    
+    @IBOutlet var uploadImageView: UIImageView!
     
     
+    @IBAction func uploadImageButton(_ sender: UIButton) {
+        
+        let image = UIImagePickerController();
+        
+        image.delegate = self;
+        
+        image.sourceType = UIImagePickerController.SourceType.photoLibrary;
+        
+        image.allowsEditing = false;
+        
+        self.present(image, animated: true){
+            
+            
+            
+        }
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            uploadImageView.image = image;
+            }
+        else {
+        print("error with image");
+    }
+        self.dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         
         view.endEditing(true);
@@ -48,6 +79,8 @@ class BarItemsView: UIViewController {
         ingredientsLabel.text = BarItem.ingredients;
         
         directionsLabel.text = BarItem.directions;
+        
+        uploadImageView.image = UIImage(data:BarItem.drinkImage);
         
     }
     

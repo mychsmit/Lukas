@@ -12,44 +12,38 @@ class BarItem: Equatable, Codable {
     var ingredients: String;
     
     var drinkTitle: String;
-    
-    var ratingValue: Int;
+//
+//    var ratingValue: Int;
     
     var directions: String;
     
+    var drinkImage: Data;
     
-    init(drinkTitle: String, ingredients: String, ratingValue: Int, directions: String) {
+    
+    init(drinkTitle: String, ingredients: String, directions: String, drinkImage: UIImage ) {
         
         self.drinkTitle = drinkTitle;
         
         self.ingredients = ingredients;
         
-        self.ratingValue = ratingValue;
-        
         self.directions = directions;
+        
+        self.drinkImage = drinkImage.jpegData(compressionQuality: 0.5)!;
         
     }
     
-    convenience init(random: Bool = false) {
-        
-        if random {
-            
-            self.init(drinkTitle: "Cosmopolitan", ingredients: "Vodka, Cranberry Juice", ratingValue: 5, directions: "mix");
-            
-        } else {
-            
-            self.init(drinkTitle: "", ingredients: "", ratingValue: 0, directions: "");
-            
-        }
-        
-    }
+//    convenience init(drinkTitle: String, ingredients: String, directions: String) {
+//            
+//            self.init(drinkTitle: "Cosmopolitan", ingredients: "Vodka, Cranberry Juice", ratingValue: 5, directions: "mix");
+//        
+//    }
     
     static func ==(lhs: BarItem, rhs: BarItem) -> Bool {
     
     return lhs.drinkTitle == rhs.drinkTitle
         && lhs.ingredients == rhs.ingredients
-        && lhs.ratingValue == rhs.ratingValue
-        && lhs.directions == rhs.directions;
+        && lhs.directions == rhs.directions
+        && lhs.drinkImage == rhs.drinkImage;
     
     }
 }
