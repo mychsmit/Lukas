@@ -5,11 +5,14 @@
 //  Created by Mychal Smith on 10/17/22.
 //
 
+import Foundation
 import UIKit
 
-class BarItem: Equatable, Codable {
+class BarItem: Equatable, Codable, Identifiable {
     
     var ingredients: String;
+    
+    var id = UUID()
     
     var drinkTitle: String;
 //
@@ -17,19 +20,24 @@ class BarItem: Equatable, Codable {
     
     var directions: String;
     
-    var drinkImage: Data;
+    //var drinkImage: Data;
+    var drinkImageURL: String?
     
+//    init(drinkTitle: String, ingredients: String, directions: String, drinkImage: UIImage ) {
+//
+//        self.drinkTitle = drinkTitle;
+//
+//        self.ingredients = ingredients;
+//
+//        self.directions = directions;
+//
+//        self.drinkImage = drinkImage.jpegData(compressionQuality: 0.5)!;
+//    }
     
-    init(drinkTitle: String, ingredients: String, directions: String, drinkImage: UIImage ) {
-        
-        self.drinkTitle = drinkTitle;
-        
-        self.ingredients = ingredients;
-        
-        self.directions = directions;
-        
-        self.drinkImage = drinkImage.jpegData(compressionQuality: 0.5)!;
-        
+    init() {
+        self.ingredients = ""
+        self.drinkTitle = ""
+        self.directions = ""
     }
     
 //    convenience init(drinkTitle: String, ingredients: String, directions: String) {
@@ -43,7 +51,7 @@ class BarItem: Equatable, Codable {
     return lhs.drinkTitle == rhs.drinkTitle
         && lhs.ingredients == rhs.ingredients
         && lhs.directions == rhs.directions
-        && lhs.drinkImage == rhs.drinkImage;
+        && lhs.drinkImageURL == rhs.drinkImageURL;
     
     }
 }

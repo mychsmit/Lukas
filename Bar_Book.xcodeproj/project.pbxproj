@@ -109,10 +109,10 @@
 		009C784528F74D1600807132 /* Bar_Book */ = {
 			isa = PBXGroup;
 			children = (
+				6C91EA4428FF82EC00AFABF5 /* Model */,
+				6C91EA4528FF82F000AFABF5 /* View Controllers */,
 				009C784628F74D1600807132 /* AppDelegate.swift */,
 				009C784828F74D1600807132 /* SceneDelegate.swift */,
-				005C31D628FDCB72006D9F58 /* BarItem.swift */,
-				005C31D828FDCDF9006D9F58 /* SaveBarItem.swift */,
 				005C31DA28FDD535006D9F58 /* BarItemCell.swift */,
 				005C31D228FDC624006D9F58 /* AddBarItemView.swift */,
 				005C31D428FDC68B006D9F58 /* BarItemsView.swift */,
@@ -141,6 +141,22 @@
 				009C786A28F74D1800807132 /* Info.plist */,
 			);
 			path = Bar_BookUITests;
+			sourceTree = "<group>";
+		};
+		6C91EA4428FF82EC00AFABF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				005C31D828FDCDF9006D9F58 /* SaveBarItem.swift */,
+				005C31D628FDCB72006D9F58 /* BarItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6C91EA4528FF82F000AFABF5 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,6 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5P6VHVKG9S;
 				INFOPLIST_FILE = Bar_Book/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,6 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5P6VHVKG9S;
 				INFOPLIST_FILE = Bar_Book/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

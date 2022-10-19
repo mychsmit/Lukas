@@ -8,10 +8,12 @@
 import UIKit
 
 class SaveBarItem {
-    
-    var addBarItem = AddBarItemView();
-    
-    var allBarItems = [BarItem]();
+            
+    var allBarItems = [BarItem]() {
+        didSet {
+            saveChanges()
+        }
+    }
     
     let itemArchiveURL: URL = {
         
@@ -23,17 +25,13 @@ class SaveBarItem {
         
     }()
     
-    @discardableResult func createItem() -> BarItem {
+    func update( with item: BarItem ) {
         
-        let newBarItem = BarItem(drinkTitle: addBarItem.drinkTitleField.text!, ingredients: addBarItem.ingredientsField.text!, directions: addBarItem.directionsField.text!, drinkImage: addBarItem.uploadImageView.image!);
-        
-        print(newBarItem);
-
-        allBarItems.append(newBarItem);
-
-        return newBarItem;
-        
-        
+        if let index = allBarItems.firstIndex(of: item) {
+            allBarItems[index] = item
+        } else {
+            allBarItems.append(item)
+        }
     }
     
     func removeItem(_ item: BarItem) {

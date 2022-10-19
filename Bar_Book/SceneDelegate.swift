@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // Create an Itemstore
-        let SaveBarItem = SaveBarItem();
+//        let SaveBarItem = SaveBarItem();
         
         //Access the ItemsViewController and set its item store
         
@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let itemsController = navController.topViewController as! BarBookView;
         
-        itemsController.SaveBarItem = SaveBarItem;
+        //SaitemsController.SaveBarItem = SaveBarItem;
         
     }
 

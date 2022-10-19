@@ -9,22 +9,27 @@ import UIKit
 
 class BarBookView: UITableViewController {
     
-    var SaveBarItem: SaveBarItem!
-    
-    
+    var saveBarItem = SaveBarItem()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return SaveBarItem.allBarItems.count;
+        return saveBarItem.allBarItems.count;
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = UITableViewCell(style: .value1, reuseIdentifier: "UITableViewCell");
+        //        let cell = UITableViewCell(style: .value1, reuseIdentifier: "UITableViewCell");
         let cell = tableView.dequeueReusableCell(withIdentifier: "barItemCell", for: indexPath) as! BarItemCell;
         
-        let item = SaveBarItem.allBarItems[indexPath.row]
+        let item = saveBarItem.allBarItems[indexPath.row]
+        
+        if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent( item.drinkImageURL ?? "" ),
+           let data = try? Data(contentsOf: url) {
+            cell.drinkImageView.image = UIImage(data: data)
+        } else {
+            cell.drinkImageView.image = UIImage(named: "cocktailImage")
+        }
         
         cell.drinkTitleLabel.text = item.drinkTitle;
         
@@ -38,9 +43,9 @@ class BarBookView: UITableViewController {
         
         if editingStyle == .delete {
             
-            let item = SaveBarItem.allBarItems[indexPath.row];
+            let item = saveBarItem.allBarItems[indexPath.row];
             
-            SaveBarItem.removeItem(item);
+            saveBarItem.removeItem(item);
             
             tableView.deleteRows(at: [indexPath], with: .automatic);
             
@@ -50,7 +55,7 @@ class BarBookView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        SaveBarItem.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row);
+        saveBarItem.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row);
         
     }
     
@@ -68,34 +73,32 @@ class BarBookView: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        
-        case "showBarItem":
-            
-            if let row = tableView.indexPathForSelectedRow?.row {
                 
-                let item = SaveBarItem.allBarItems[row];
+            case "showBarItem":
                 
-                let BarItemsView = segue.destination as! BarItemsView;
+                if let row = tableView.indexPathForSelectedRow?.row {
+                    
+                    let item = saveBarItem.allBarItems[row];
+                    
+                    let BarItemsView = segue.destination as! BarItemsView;
+                    
+                    BarItemsView.barItem = item;
+                    BarItemsView.onSave = { barItem in
+                        self.saveBarItem.update(with: barItem)
+                    }
+                    
+                }
                 
-                BarItemsView.BarItem = item;
+            case "addBarItem":
+                if let barItemsView = segue.destination as? AddBarItemView {
+                    
+                    barItemsView.onSave = { barItem in
+                        self.saveBarItem.update(with: barItem)
+                    }
+                }
                 
-            }
-            
-        case "addBarItem":
-            
-            if let row = tableView.indexPathForSelectedRow?.row {
+            default: preconditionFailure("Unexpected segue identifier.")
                 
-                let item = SaveBarItem.allBarItems[row];
-                
-                let BarItemsView = segue.destination as! AddBarItemView;
-                
-                BarItemsView.BarItem = item;
-                
-            }
-                
-        
-        default: preconditionFailure("Unexpected segue identifier.")
-            
         }
         
         
@@ -118,7 +121,7 @@ class BarBookView: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem;
         
     }
-
-
+    
+    
 }
 

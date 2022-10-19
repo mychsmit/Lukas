@@ -8,12 +8,12 @@
 import UIKit
 
 class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    var BarItem: BarItem! {
+    
+    var barItem: BarItem! {
         
         didSet {
             
-            navigationItem.title = BarItem.drinkTitle;
+            navigationItem.title = barItem.drinkTitle;
             
         }
         
@@ -25,7 +25,8 @@ class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControlle
     //Cranberry Juice 3oz
     //any other ingredients
     
-
+    var onSave: ((BarItem) -> Void)?
+    
     @IBOutlet var drinkTitleLabel: UITextField!
     
     @IBOutlet var ingredientsLabel: UITextField!
@@ -45,25 +46,32 @@ class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControlle
         
         image.allowsEditing = false;
         
-        self.present(image, animated: true){
-            
-            
-            
-        }
+        self.present(image, animated: true)
+    }
+    
+    func handleBarItemImage() {
+        guard let jpg = uploadImageView.image?.jpegData(compressionQuality: 1),
+              let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent( "\(barItem.id.uuidString).jpg" )
+        else { return }
         
+        do {
+            try jpg.write(to: directory, options: [.atomic])
+            barItem.drinkImageURL = "\(barItem.id.uuidString).jpg"
+        } catch { print( error.localizedDescription ) }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             uploadImageView.image = image;
-            }
+        }
         else {
-        print("error with image");
-    }
+            print("error with image");
+        }
         self.dismiss(animated: true, completion: nil)
+        handleBarItemImage()
     }
-
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         
         view.endEditing(true);
@@ -74,13 +82,20 @@ class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControlle
         
         super.viewWillAppear(animated);
         
-        drinkTitleLabel.text = BarItem.drinkTitle;
+        drinkTitleLabel.text = barItem.drinkTitle;
         
-        ingredientsLabel.text = BarItem.ingredients;
+        ingredientsLabel.text = barItem.ingredients;
         
-        directionsLabel.text = BarItem.directions;
+        directionsLabel.text = barItem.directions;
         
-        uploadImageView.image = UIImage(data:BarItem.drinkImage);
+        if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent( barItem.drinkImageURL ?? "" ),
+           let data = try? Data(contentsOf: url) {
+            uploadImageView.image = UIImage(data: data)
+        } else {
+            uploadImageView.image = UIImage(named: "cocktailImage")
+        }
+        
+        //uploadImageView.image = UIImage(data:BarItem.drinkImage);
         
     }
     
@@ -90,12 +105,12 @@ class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControlle
         
         view.endEditing(true);
         
-        BarItem.drinkTitle = drinkTitleLabel.text ?? "";
+        barItem.drinkTitle = drinkTitleLabel.text ?? "";
         
-        BarItem.ingredients = ingredientsLabel.text ?? "";
+        barItem.ingredients = ingredientsLabel.text ?? "";
         
-        BarItem.directions = directionsLabel.text ?? "";
-        
+        barItem.directions = directionsLabel.text ?? "";
+        onSave?( barItem )
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
