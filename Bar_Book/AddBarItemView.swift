@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddBarItemView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddBarItemView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate { 
     
     //var saveBarItem = SaveBarItem()
     

@@ -8,7 +8,7 @@
 import UIKit
 
 
-class BarItemCell: UITableViewCell{
+class BarItemCell: UITableViewCell{ 
     
     @IBOutlet var drinkTitleLabel: UILabel!;
     

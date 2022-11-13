@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class BarItemsView: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate { 
     
     var barItem: BarItem! {
         

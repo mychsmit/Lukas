@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarBookView: UITableViewController {
+class BarBookView: UITableViewController { 
     
     var saveBarItem = SaveBarItem()
     

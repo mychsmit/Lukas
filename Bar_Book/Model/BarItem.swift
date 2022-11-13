@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class BarItem: Equatable, Codable, Identifiable {
+class BarItem: Equatable, Codable, Identifiable { 
     
     var ingredients: String;
     
